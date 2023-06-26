@@ -1,0 +1,12 @@
+@use '@/styles/vars' as v;
+@use '@/styles/colors' as c;
+
+.main-header {
+  @include c.light-blur-bg;
+  height: 60px;
+  padding: v.$gut * 2 v.$gut;
+  position: sticky;
+  top: 0;
+  width: 100vw;
+  z-index: 50;
+}

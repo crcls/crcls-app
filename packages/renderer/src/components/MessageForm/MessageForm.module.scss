@@ -1,0 +1,52 @@
+@use '@/styles/colors' as c;
+@use '@/styles/vars' as v;
+
+.message-form {
+  align-items: center;
+  display: flex;
+  flex: 0 0 60px;
+  padding: v.$gut * 2;
+
+  .input-wrapper {
+    @include c.light-blur-bg(0.6);
+    border-radius: v.$br;
+    height: calc(1em + v.$gut*4);
+    flex-grow: 1;
+    padding: v.$gut * 1.5 v.$gut * 2;
+    position: relative;
+    transition: outline 125ms cubic-bezier(0.39, 0.575, 0.565, 1);
+
+    &:has(textarea:focus-visible) {
+      outline: 2px solid var(--active-color);
+    }
+
+    .text-input {
+      background-color: transparent;
+      border: none;
+      height: 1.5em;
+      resize: none;
+      width: calc(100% - 43px - v.$gut);
+
+      &:focus-visible {
+        outline: none;
+      }
+    }
+
+    $promptColor: #0000004F;
+
+    &::after {
+      border: 1.5px solid $promptColor;
+      border-radius: 4px;
+      color: $promptColor;
+      content: 'Enter';
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      padding: v.$gut * 0.5;
+      position: absolute;
+      right: v.$gut * 2;
+      top: v.$gut * 1.5;
+      z-index: 10;
+    }
+  }
+}

@@ -1,0 +1,31 @@
+@use 'sass:map';
+
+$colors: (
+  'primary': #5551ff,
+  'secondary': #ff8577,
+  'window': #c2e3f1,
+  'link': color-mix(in srgb, #f23fa9 90%, #fff 10%),
+  'active': #f23fa9,
+  'success': #3cb371,
+  'warn': #ffcc00,
+  'error': #d90040,
+);
+
+@mixin light-blur-bg($alpha: 0.2) {
+  background: rgba(255, 255, 255, $alpha);
+  backdrop-filter: blur(8px);
+}
+
+@mixin gradient-bg {
+  background: linear-gradient(135deg,
+      #ff8577 0%,
+      #ff757c 11.111111%,
+      #ff6485 22.222222%,
+      #ff5392 33.333333%,
+      #f845a1 44.444444%,
+      #eb3ab2 55.555556%,
+      #d837c6 66.666667%,
+      #be3cd9 77.777778%,
+      #9746ed 88.888889%,
+      #5551ff 100%);
+}

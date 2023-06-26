@@ -1,0 +1,43 @@
+@use '@/styles/modern-normalize.css';
+@use '@/styles/fonts';
+@use '@/styles/ui.global';
+
+@use '@/styles/colors' as c;
+
+:root {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  text-rendering: geometricPrecision;
+
+  @each $name,
+  $color in c.$colors {
+    --#{$name}-color: #{$color};
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+body {
+  background: #5551ff linear-gradient(135deg,
+      #5551ff 0%,
+      #9746ed 50%,
+      #be3cd9 100%);
+
+  background-attachment: fixed !important;
+}
+
+#root {
+  display: grid;
+  grid-template-rows: 60px 1fr;
+  height: 100svh;
+}
