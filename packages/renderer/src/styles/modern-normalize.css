@@ -166,15 +166,16 @@ button,
 input,
 optgroup,
 select,
-textarea {
+textarea,
+a[role="button"] {
+  background: none;
+  border: none;
   font-family: inherit;
-  /* 1 */
   font-size: 100%;
-  /* 1 */
   line-height: 1.15;
-  /* 1 */
   margin: 0;
-  /* 2 */
+  padding: 0;
+  text-decoration: none;
 }
 
 /**

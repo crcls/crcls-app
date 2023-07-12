@@ -1,0 +1,8 @@
+@use '@/styles/vars' as v;
+@use '@/styles/colors' as c;
+
+.create-account-panel {
+  padding: v.$gut;
+  transition: height 333ms ease-out;
+  width: min(calc(100vw - 60px), 320px);
+}

@@ -5,10 +5,49 @@ input[type=text] {
   @include c.light-blur-bg(0.6);
   border: none;
   border-radius: v.$br;
+  color: var(--primary-text);
   padding: v.$gut * 2;
   transition: outline 333ms cubic-bezier(0.39, 0.575, 0.565, 1);
 
   &:focus-visible {
     outline: 2px solid var(--active-color);
+  }
+}
+
+.btn {
+  @include c.light-blur-bg;
+  border-radius: 30px;
+  color: var(--primary-text);
+  cursor: pointer;
+  font-family: 'Marfa';
+  font-weight: 800;
+  letter-spacing: 0.016em;
+  padding: v.$gut*2 v.$gut *3;
+  text-transform: uppercase;
+  transition: background 333ms ease-out;
+
+  &:hover {
+    @include c.light-blur-bg(0.3);
+
+    &::after {
+      margin-right: v.$gut * -1;
+      margin-left: v.$gut * 2;
+    }
+  }
+
+  &:active {
+    @include c.light-blur-bg(0.6);
+    transition-duration: 125ms;
+  }
+
+  &::after {
+    content: '→';
+    margin-left: v.$gut;
+    transition: margin 333ms cubic-bezier(0.215, 0.610, 0.355, 1);
+  }
+
+  &-block {
+    display: block;
+    width: 100%;
   }
 }

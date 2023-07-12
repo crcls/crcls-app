@@ -1,0 +1,28 @@
+@use '@/styles/vars' as v;
+
+.splash-page {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: v.$gut;
+  justify-content: center;
+  padding: v.$gut;
+
+  :global(.crcls-logo) {
+    animation: fadeIn 999ms forwards cubic-bezier(0.215, 0.610, 0.355, 1);
+    flex: 0 0 auto;
+    align-items: center;
+    display: flex;
+    padding-bottom: v.$gut * 6;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

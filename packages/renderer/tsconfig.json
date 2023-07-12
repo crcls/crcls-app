@@ -22,8 +22,8 @@
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
     "types": [
-      "vite/client",
-      "vite-plugin-solid-svg/types"
+      "vite-plugin-solid-svg/types",
+      "vite/client"
     ]
   },
   "include": [

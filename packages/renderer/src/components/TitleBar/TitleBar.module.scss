@@ -1,0 +1,42 @@
+@use '@/styles/vars' as v;
+@use '@/styles/colors' as c;
+
+.title-bar {
+  @include c.light-blur-bg;
+  align-items: center;
+  display: flex;
+  left: 0;
+  gap: v.$gut;
+  padding: 0 v.$gut;
+  position: sticky;
+  right: 0;
+  top: 0;
+  width: 100vw;
+
+  .frame-actions {
+    display: flex;
+    flex: 0 0 auto;
+    gap: v.$gut;
+
+    &-btn {
+      background-color: #ffffff40;
+      border-radius: 50%;
+      cursor: pointer;
+      height: 15px;
+      transition: background-color 125ms ease-in;
+      width: 15px;
+
+      &-min:hover {
+        background-color: var(--warn-color);
+      }
+
+      &-max:hover {
+        background-color: var(--success-color);
+      }
+
+      &-close:hover {
+        background-color: var(--error-color);
+      }
+    }
+  }
+}

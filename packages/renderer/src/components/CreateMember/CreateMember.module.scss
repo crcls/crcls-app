@@ -1,0 +1,31 @@
+@use '@/styles/vars' as v;
+
+.register-panel {
+  flex: 1 0 66%;
+  width: min(calc(100vw - 60px), 480px);
+
+  .handle-field {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: v.$gut;
+    padding: v.$gut 0;
+
+    label {
+      font-family: 'Sporting Grotesque';
+    }
+
+    input {
+      background-color: transparent;
+      border-bottom: 1px solid var(--primary-text);
+      border-radius: 0;
+      font-size: 2rem;
+      padding: v.$gut 0;
+      width: 100%;
+
+      &:focus-visible {
+        outline: none;
+      }
+    }
+  }
+}

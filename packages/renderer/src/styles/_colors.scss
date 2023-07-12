@@ -11,6 +11,12 @@ $colors: (
   'error': #d90040,
 );
 
+$text-colors: (
+  'primary': #e4f1ff,
+  'inverted': #424549,
+  'secondary': #ff8577,
+);
+
 @mixin light-blur-bg($alpha: 0.2) {
   background: rgba(255, 255, 255, $alpha);
   backdrop-filter: blur(8px);

@@ -1,10 +1,12 @@
 @use '@/styles/modern-normalize.css';
 @use '@/styles/fonts';
 @use '@/styles/ui.global';
+@use '@/styles/typography.global';
 
 @use '@/styles/colors' as c;
 
 :root {
+  color: var(--primary-text);
   font-family: 'Inter', sans-serif;
   font-size: 16px;
   text-rendering: geometricPrecision;
@@ -12,6 +14,11 @@
   @each $name,
   $color in c.$colors {
     --#{$name}-color: #{$color};
+  }
+
+  @each $name,
+  $color in c.$text-colors {
+    --#{$name}-text: #{$color};
   }
 }
 
@@ -38,6 +45,6 @@ body {
 
 #root {
   display: grid;
-  grid-template-rows: 60px 1fr;
+  grid-template-rows: 33px 1fr;
   height: 100svh;
 }

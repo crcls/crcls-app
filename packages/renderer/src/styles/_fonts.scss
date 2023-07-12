@@ -1,1 +1,51 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter;wght@400;500;600;700&display=swap');
+
+// Sporting Grotesque By Lucas Le Bihan and some contributions by George Triantafyllakos + Maciej Połczyński distrubuted by Velvetyne Type Foundry
+@font-face {
+  font-family: "Sporting Grotesque";
+  font-weight: 100 400;
+  src: url('@/assets/SportingGrotesque-Regular.otf');
+}
+
+// Sporting Grotesque By Lucas Le Bihan and some contributions by George Triantafyllakos + Maciej Połczyński distrubuted by Velvetyne Type Foundry
+@font-face {
+  font-family: "Sporting Grotesque";
+  font-weight: 500 900;
+  src: url('@/assets/SportingGrotesque-Bold.otf');
+}
+
+@font-face {
+  font-family: "Marfa";
+  font-weight: 100;
+  src:
+    url('@/assets/ABCMarfa-Thin-Trial.otf') format('opentype'),
+    url('@/assets/ABCMarfa-Thin-Trial.woff') format('woff'),
+    url('@/assets/ABCMarfa-Thin-Trial.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: "Marfa";
+  font-weight: 400;
+  src:
+    url('@/assets/ABCMarfa-Medium-Trial.otf') format('opentype'),
+    url('@/assets/ABCMarfa-Medium-Trial.woff') format('woff'),
+    url('@/assets/ABCMarfa-Medium-Trial.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: "Marfa";
+  font-weight: 600;
+  src:
+    url('@/assets/ABCMarfa-Semibold-Trial.otf') format('opentype'),
+    url('@/assets/ABCMarfa-Semibold-Trial.woff') format('woff'),
+    url('@/assets/ABCMarfa-Semibold-Trial.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: "Marfa";
+  font-weight: 800;
+  src:
+    url('@/assets/ABCMarfa-Bold-Trial.otf') format('opentype'),
+    url('@/assets/ABCMarfa-Bold-Trial.woff') format('woff'),
+    url('@/assets/ABCMarfa-Bold-Trial.woff2') format('woff2');
+}
