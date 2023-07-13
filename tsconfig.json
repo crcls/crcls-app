@@ -12,5 +12,5 @@
     "strict": true,
     "jsx": "preserve",
     "jsxImportSource": "solid-js"
-  }
+  },
 }

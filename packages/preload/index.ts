@@ -1,20 +1,30 @@
-import { IpcRendererEvent, contextBridge, ipcRenderer } from 'electron'
-
-type CRCLSEvent = 'converse-event'
+import { CRCLSMessage } from '@/types'
+import { contextBridge, ipcRenderer } from 'electron'
 
 contextBridge.exposeInMainWorld('CRCLS', {
-  sendCommand: (cmd: string, data: string) => ipcRenderer.send(`/${cmd} ${data}`),
-  on: (event: CRCLSEvent, cb: (e: IpcRendererEvent, ...args: any[]) => void) => {
-    ipcRenderer.on(event, cb)
+  sendCommand: (cmd: string, subcmd?: string, data?: string) => {
+    let command = `/${cmd}`
+    if (subcmd !== undefined) {
+      command = `${command} ${subcmd}`
+    }
+
+    if (data !== undefined) {
+      command = `${command} ${data}`
+    }
+
+    ipcRenderer.send('command', command)
   },
-  once: (event: CRCLSEvent, cb: (e: IpcRendererEvent, ...args: any[]) => void) => {
-    ipcRenderer.on(event, (e, ...args: any[]) => {
-      cb(e, ...args)
-      ipcRenderer.removeListener(event, cb)
+  on: <T extends CRCLSMessageUnion>(type: CRCLSMessage, cb: CommandHandler<T>) => {
+    ipcRenderer.on(type, cb)
+  },
+  once: <T extends CRCLSMessageUnion>(type: CRCLSMessage, cb: CommandHandler<T>) => {
+    ipcRenderer.once(type, (t, response) => {
+      ipcRenderer.removeListener(type, cb)
+      cb(t, response)
     })
   },
-  removeListener: (event: string, listener: (event: IpcRendererEvent, ...args: any[]) => void) => {
-    ipcRenderer.removeListener(event, listener)
+  removeListener: <T extends CRCLSMessageUnion>(type: CRCLSMessage, listener: CommandHandler<T>) => {
+    ipcRenderer.removeListener(type, listener)
   },
 })
 

@@ -3,7 +3,9 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@/*": ["packages/renderer/src/*"]
+      "@/*": [
+        "packages/renderer/src/*"
+      ]
     }
   }
 }

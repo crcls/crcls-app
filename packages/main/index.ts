@@ -22,8 +22,7 @@ if (!app.requestSingleInstanceLock()) {
 }
 
 app.whenReady().then(() => {
-  startConverse()
-  createWindow()
+  startConverse().then(createWindow)
 })
 
 app.on('window-all-closed', () => {

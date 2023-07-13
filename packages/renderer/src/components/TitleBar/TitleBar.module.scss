@@ -12,6 +12,7 @@
   right: 0;
   top: 0;
   width: 100vw;
+  -webkit-app-region: drag;
 
   .frame-actions {
     display: flex;
@@ -25,6 +26,7 @@
       height: 15px;
       transition: background-color 125ms ease-in;
       width: 15px;
+      -webkit-app-region: no-drag;
 
       &-min:hover {
         background-color: var(--warn-color);

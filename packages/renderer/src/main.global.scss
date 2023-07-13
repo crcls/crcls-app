@@ -7,7 +7,6 @@
 
 :root {
   color: var(--primary-text);
-  font-family: 'Inter', sans-serif;
   font-size: 16px;
   text-rendering: geometricPrecision;
 
@@ -41,6 +40,8 @@ body {
       #be3cd9 100%);
 
   background-attachment: fixed !important;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 400;
 }
 
 #root {

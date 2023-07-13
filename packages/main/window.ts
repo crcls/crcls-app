@@ -1,10 +1,14 @@
-import { app, BrowserWindow, ipcMain, shell } from 'electron'
+import { app, BrowserWindow, ipcMain, IpcMainEvent, shell } from 'electron'
 import { join } from 'path'
 
 const WIN_WIDTH = 1440
 const WIN_HEIGHT = 900
 
 export let win: BrowserWindow | null = null
+
+let isMoving = false;
+let initialMousePosition: { x: number; y: number } | null;
+let initialWindowPosition: { x: number; y: number } | null;
 
 export async function createWindow() {
   win = new BrowserWindow({

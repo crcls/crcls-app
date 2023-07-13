@@ -4,5 +4,31 @@
 .create-account-panel {
   padding: v.$gut;
   transition: height 333ms ease-out;
-  width: min(calc(100vw - 60px), 320px);
+  width: min(calc(100vw - 60px), 420px);
+
+  .seed-phrase {
+    display: flex;
+    flex-direction: column;
+    gap: v.$gut*2;
+
+    &-words {
+      @include c.light-blur-bg(0.1);
+      border-radius: 18px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: max-content;
+      gap: v.$gut;
+      margin-bottom: v.$gut*2;
+      padding: v.$gut * 3;
+
+      span {
+        @include c.light-blur-bg(0.3);
+        border-radius: 9px;
+        color: var(--inverted-text);
+        font-weight: 400;
+        padding: v.$gut * 0.66 v.$gut * 1.2;
+        text-align: center;
+      }
+    }
+  }
 }

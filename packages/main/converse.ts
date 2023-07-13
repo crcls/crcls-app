@@ -14,48 +14,54 @@ const TIME_FRAME = 5000
 const INITIAL_TIMEOUT = 1000
 const MAX_TIMEOUT = 60000
 
-export function startConverse() {
-  const now = Date.now()
-  if (restarts.length >= MAX_RESTARTS && (now - restarts[0]) < TIME_FRAME) {
-    console.log('Too many recent restarts, not starting CLI app')
-    return
-  }
+export function startConverse(): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const now = Date.now()
+    if (restarts.length >= MAX_RESTARTS && (now - restarts[0]) < TIME_FRAME) {
+      console.log('Too many recent restarts, not starting CLI app')
+      reject()
+      return
+    }
 
-  restarts.push(now)
-  while (restarts.length > 0 && (now - restarts[0]) > TIME_FRAME) {
-    restarts.shift()
-  }
-  restartCount++
+    restarts.push(now)
+    while (restarts.length > 0 && (now - restarts[0]) > TIME_FRAME) {
+      restarts.shift()
+    }
+    restartCount++
 
-  const timeout = Math.min(INITIAL_TIMEOUT * Math.pow(2, restartCount), MAX_TIMEOUT);
-  console.log(`Waiting ${timeout}ms before restarting CLI app...`)
+    const timeout = Math.min(INITIAL_TIMEOUT * Math.pow(2, restartCount), MAX_TIMEOUT);
+    console.log(`Waiting ${timeout}ms before restarting CLI app...`)
 
-  setTimeout(() => {
-    converse = spawn(process.env.CONVERSE!, ['-logfile', path.resolve('~', 'crcls', 'logs', '0000000.log')], { env: process.env })
+    setTimeout(() => {
+      converse = spawn(process.env.CONVERSE!, ['-logfile', path.resolve('~', 'crcls', 'logs', '0000000.log')], { env: process.env })
 
-    converse.stdout.on('data', (data) => {
-      console.log('Converse data: ', data.toString())
-      // Send data to the frontend
-      win?.webContents.send('converse-event', data.toString())
-    })
+      converse.stdout.on('data', (data) => {
+        // console.log('Converse data: ', data.toString())
+        // Send data to the frontend
+        const msg = JSON.parse(data)
+        console.log(msg)
+        win?.webContents.send(msg.type, msg)
+      })
 
-    converse.stderr.on('data', (data) => {
-      console.error(`CLI app stderr: ${data}`)
-    })
+      converse.stderr.on('data', (data) => {
+        console.error(`CLI app stderr: ${data}`)
+      })
 
-    converse.on('close', (code) => {
-      if (code !== 0) {
-        console.log(`CLI app process exited with code ${code}`)
+      converse.on('close', (code) => {
+        if (code !== 0) {
+          console.log(`CLI app process exited with code ${code}`)
 
-        if (status === 'running') {
-          console.log('Restarting converse.')
-          startConverse()
+          if (status === 'running') {
+            console.log('Restarting converse.')
+            startConverse()
+          }
         }
-      }
-    })
+      })
 
-    status = 'running'
-  }, timeout)
+      status = 'running'
+      resolve()
+    }, timeout)
+  })
 }
 
 export function stopConverse() {

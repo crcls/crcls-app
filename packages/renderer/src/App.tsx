@@ -17,15 +17,13 @@ const App: Component = () => {
   return (
     <>
       <TitleBar />
-      {member() === undefined && (
-        <section class={splashPage}>
-          <span class="crcls-logo">
-            <CRCLSLogo width={33} height={33} viewBox="0 0 33 33" />
-            CRCLS
-          </span>
-          {ready.loading ? <Loader /> : member() === undefined && <CreateAccount />}
-        </section>
-      )}
+      <section class={splashPage}>
+        <span class="crcls-logo">
+          <CRCLSLogo width={33} height={33} viewBox="0 0 33 33" />
+          CRCLS
+        </span>
+        {ready.loading ? <Loader /> : member() === null && <CreateAccount />}
+      </section>
     </>
   )
 }
