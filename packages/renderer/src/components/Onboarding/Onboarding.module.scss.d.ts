@@ -1,5 +1,6 @@
 declare const classNames: {
-  readonly splashPage: 'splashPage'
+  readonly onboardingPage: 'onboardingPage'
   readonly crclsLogo: 'crclsLogo'
+  readonly exit: 'exit'
 }
 export = classNames

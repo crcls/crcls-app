@@ -1,29 +1,25 @@
-import { Component, createMemo, createResource } from 'solid-js'
+import { Component } from 'solid-js'
 
-import CRCLSLogo from '@/assets/crcls-logo.svg?component-solid'
 import TitleBar from '@/components/TitleBar/TitleBar'
-import Loader from '@/components/Loader/Loader'
-import CreateAccount from '@/components/CreateAccount/CreateAccount'
-import { waitForReady } from '@/ipc/converse'
-
-import { splashPage } from './App.module.scss'
+import Onboarding from '@/components/Onboarding/Onboarding'
+import AccountManager from '@/components/AccountManager/AccountManager'
+import { useSignal } from '@/hooks/signals'
 
 const App: Component = () => {
-  const [ready] = createResource(waitForReady)
-  const member = createMemo(() => {
-    return ready()?.member
-  })
+  const account = useSignal<Account>()
+
+  const handleComplete = (acc: Account) => {
+    account.value = acc
+  }
 
   return (
     <>
       <TitleBar />
-      <section class={splashPage}>
-        <span class="crcls-logo">
-          <CRCLSLogo width={33} height={33} viewBox="0 0 33 33" />
-          CRCLS
-        </span>
-        {ready.loading ? <Loader /> : member() === null && <CreateAccount />}
-      </section>
+      {account.value === undefined ? (
+        <Onboarding onComplete={handleComplete} />
+      ) : (
+        <AccountManager account={account.valueOrDie} />
+      )}
     </>
   )
 }

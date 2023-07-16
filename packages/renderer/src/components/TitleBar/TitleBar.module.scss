@@ -7,8 +7,9 @@
   display: flex;
   left: 0;
   gap: v.$gut;
+  height: v.$th;
   padding: 0 v.$gut;
-  position: sticky;
+  position: fixed;
   right: 0;
   top: 0;
   width: 100vw;

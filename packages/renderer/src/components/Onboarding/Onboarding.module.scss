@@ -1,28 +1,44 @@
 @use '@/styles/vars' as v;
 
-.splash-page {
+.onboarding-page {
   align-items: center;
   display: flex;
   flex-direction: column;
   gap: v.$gut;
+  height: calc(100vh - v.$th);
   justify-content: center;
   padding: v.$gut;
 
   :global(.crcls-logo) {
-    animation: fadeIn 999ms forwards cubic-bezier(0.215, 0.610, 0.355, 1);
+    animation: fade-in 999ms forwards cubic-bezier(0.215, 0.610, 0.355, 1);
     flex: 0 0 auto;
     align-items: center;
     display: flex;
     padding-bottom: v.$gut * 6;
+
+    &.exit {
+      animation: logo-exit 333ms forwards ease-in;
+    }
   }
 }
 
-@keyframes fadeIn {
+@keyframes fade-in {
   from {
     opacity: 0;
   }
 
   to {
     opacity: 1;
+  }
+}
+
+@keyframes logo-exit {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-120px);
   }
 }

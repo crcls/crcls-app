@@ -1,0 +1,18 @@
+.icon {
+  fill: currentColor;
+  stroke: currentColor;
+
+  &-spin {
+    animation: icon-spin-anim 1200ms infinite linear;
+  }
+}
+
+@keyframes icon-spin-anim {
+  from {
+    rotate: 0deg;
+  }
+
+  to {
+    rotate: 360deg;
+  }
+}

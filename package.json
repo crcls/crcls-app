@@ -9,7 +9,8 @@
     "build": "npm run typecheck && node scripts/build.mjs && electron-builder --config .electron-builder.config.js",
     "start": "npm run build && electron ./dist/main.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "typecheck": "tsc --noEmit --project packages/renderer/tsconfig.json"
+    "typecheck": "tsc --noEmit --project packages/renderer/tsconfig.json",
+    "format": "prettier --parser typescript"
   },
   "author": "Matt Grannary",
   "license": "MIT",
@@ -41,7 +42,9 @@
     "vite-plugin-solid-svg": "^0.6.1"
   },
   "dependencies": {
-    "electron-store": "8.1.0"
+    "electron-context-menu": "3.6.1",
+    "electron-store": "8.1.0",
+    "solid-icons": "1.0.11"
   },
   "env": {
     "PORT": 3344

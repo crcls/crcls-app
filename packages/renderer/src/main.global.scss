@@ -3,6 +3,7 @@
 @use '@/styles/ui.global';
 @use '@/styles/typography.global';
 
+@use '@/styles/vars' as v;
 @use '@/styles/colors' as c;
 
 :root {
@@ -45,7 +46,7 @@ body {
 }
 
 #root {
-  display: grid;
-  grid-template-rows: 33px 1fr;
-  height: 100svh;
+  height: 100vh;
+  padding-top: v.$th;
+  scroll-padding-top: v.$th;
 }

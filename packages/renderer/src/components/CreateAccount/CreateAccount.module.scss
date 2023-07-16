@@ -3,8 +3,12 @@
 
 .create-account-panel {
   padding: v.$gut;
-  transition: height 333ms ease-out;
+  transition: height 333ms ease-out, opacity 333ms ease-in;
   width: min(calc(100vw - 60px), 420px);
+
+  &.exit {
+    opacity: 0;
+  }
 
   .seed-phrase {
     display: flex;

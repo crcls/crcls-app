@@ -3,7 +3,7 @@ name = "typescript"
 auto-format = true
 file-types = ["ts", "tsx"]
 language-server = { command = "typescript-language-server", args = ["--stdio"] }
-formatter = { command = "./node_modules/.bin/prettier", args = ["--parser", "typescript"] }
+formatter = { command = "npm run format", args = ["--parser", "typescript"] }
 
 [[language]]
 name = "jsx"

@@ -1,4 +1,4 @@
-import { registerPanel, handleField } from "./CreateMember.module.scss"
+import { registerPanel, handleField } from './CreateMember.module.scss'
 
 const CreateMember = () => (
   <div class={registerPanel}>

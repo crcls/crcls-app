@@ -3,13 +3,13 @@ import { IpcRendererEvent } from 'electron'
 import { CRCLSMessage } from '@/types'
 
 declare global {
-  interface Member {
+  interface Account {
     address: string
     balance: number
-    bio?: string
-    channels: string[]
+    bio: string
+    channels: string[] | null
     handle: string
-    pfp?: string
+    pfp: string
   }
 
   interface CRCLSMsgBase {
@@ -25,7 +25,7 @@ declare global {
     type: CRCLSMessage.READY
     status: string
     host: string
-    member?: Member
+    account?: Account
   }
 
   interface AccountCreateMessage extends CRCLSMsgBase {
