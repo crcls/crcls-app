@@ -12,6 +12,15 @@ declare global {
     pfp: string
   }
 
+  interface Circle {
+    author: string
+    description: string
+    id: string
+    logo: string
+    name: string
+    uri: string
+  }
+
   interface CRCLSMsgBase {
     type: CRCLSMessage
   }
@@ -24,8 +33,8 @@ declare global {
   interface ReadyMessage extends CRCLSMsgBase {
     type: CRCLSMessage.READY
     status: string
-    host: string
     account?: Account
+    circles: Circle[]
   }
 
   interface AccountCreateMessage extends CRCLSMsgBase {

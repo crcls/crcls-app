@@ -1,4 +1,4 @@
-import { Component, createRenderEffect, createResource, createSignal } from 'solid-js'
+import { createRenderEffect, createResource, createSignal, useContext } from 'solid-js'
 
 import CRCLSLogo from '@/assets/crcls-logo.svg?component-solid'
 import Loader from '@/components/Loader/Loader'
@@ -7,12 +7,10 @@ import { waitForReady } from '@/ipc/converse'
 import { wait } from '@/utils/async'
 
 import { onboardingPage, exit } from './Onboarding.module.scss'
+import { AppContext } from '@/App'
 
-interface OnboardingProps {
-  onComplete: (account: Account) => void
-}
-
-const Onboarding: Component<OnboardingProps> = ({ onComplete }) => {
+const Onboarding = () => {
+  const ctx = useContext(AppContext)
   const [ready, { refetch }] = createResource(waitForReady)
   const [loading, setLoading] = createSignal(true)
   const [noAccount, setNoAccount] = createSignal(true)
@@ -21,17 +19,18 @@ const Onboarding: Component<OnboardingProps> = ({ onComplete }) => {
   createRenderEffect(async () => {
     const response = ready()
 
-    if (response) {
+    if (response && response.account) {
       const { account } = response
-      if (account !== null && account !== undefined) {
-        await wait(1200)
-        setFadeOut(() => true)
-        await wait(420)
-        setNoAccount(false)
-        await wait(333)
-        onComplete(account)
-      }
+      await wait(1200)
+      setFadeOut(() => true)
+      await wait(333)
+      setNoAccount(false)
 
+      if (ctx?.account !== undefined)
+        ctx.account.value = account
+    }
+
+    if (loading() && ready.state !== 'pending') {
       setLoading(() => false)
     }
   })

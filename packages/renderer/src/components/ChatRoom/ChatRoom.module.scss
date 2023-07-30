@@ -1,11 +1,94 @@
-.chat-room {
-  display: flex;
-  flex-direction: column;
+@use '@/styles/colors' as c;
+@use '@/styles/vars' as v;
 
-  .messages {
+.chat-room {
+  @include c.light-blur-bg;
+  border-left: 1px solid var(--border-color);
+  display: grid;
+  grid-template-columns: 3px 1fr;
+  grid-template-rows: 33px 1fr;
+
+  header {
+    align-items: center;
+    display: flex;
+    gap: v.$gut;
+    padding: 0 v.$gut;
+
+    .breadcrumb-nav {
+      flex-grow: 1;
+    }
+
+    .close-btn {
+      @include c.light-blur-bg(0.12);
+      border-radius: 3px;
+      color: #FFFFFF9D;
+      padding: 0 v.$gut * 0.25;
+
+      svg {
+        height: 16px;
+        width: 16px;
+      }
+    }
+  }
+
+  &-open-btn {
+    @include c.light-blur-bg;
+    border-radius: 50%;
+    cursor: pointer;
+    left: 0;
+    padding: v.$gut v.$gut * 1.2;
+    position: absolute;
+    top: v.$gut;
+    transform: translate(calc(-100% - v.$gut));
+    transition: background 125ms ease-out;
+
+    &:hover {
+      @include c.light-blur-bg(0.3);
+    }
+
+    svg {
+      fill: #FFFFFF9D;
+      height: 18px;
+      width: 18px;
+    }
+  }
+
+  &-min {
+    bottom: 0;
+    position: fixed;
+    right: 0;
+    top: v.$th;
+    transition: transform 125ms ease-in;
+    width: var(--cw);
+
+    &.close {
+      transform: translateX(100%);
+    }
+  }
+
+  &-handle {
+    background-color: var(--border-color);
+    cursor: col-resize;
+    grid-row: span 2;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 125ms ease-out;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &-cont {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
-    overflow-y: auto;
+    height: 100%;
+
+    .messages {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      overflow-y: auto;
+    }
   }
 }

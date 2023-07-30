@@ -9,8 +9,8 @@ contextMenu({
   showInspectElement: process.env.NODE_ENV === 'development'
 })
 
-const WIN_WIDTH = 1440
-const WIN_HEIGHT = 900
+const WIN_WIDTH = 1600
+const WIN_HEIGHT = 1200
 
 export let win: BrowserWindow | null = null
 

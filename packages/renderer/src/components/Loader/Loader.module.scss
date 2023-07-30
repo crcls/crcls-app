@@ -5,4 +5,9 @@
   font-weight: 800;
   font-size: 1.2rem;
   padding: v.$gut*2;
+
+  &-fade-out {
+    alpha: 0;
+    transition: alpha 333ms ease-out;
+  }
 }

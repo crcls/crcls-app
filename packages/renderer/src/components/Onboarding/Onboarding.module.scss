@@ -20,6 +20,11 @@
       animation: logo-exit 333ms forwards ease-in;
     }
   }
+
+  .loader-exit {
+    alpha: 0;
+    transition: alpha 333mx ease-out;
+  }
 }
 
 @keyframes fade-in {

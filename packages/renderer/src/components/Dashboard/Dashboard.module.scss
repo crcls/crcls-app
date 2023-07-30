@@ -1,0 +1,100 @@
+@use '@/styles/vars' as v;
+@use '@/styles/colors' as c;
+
+.dashboard {
+  display: grid;
+  gap: v.$gut;
+  grid-template-columns: 1fr;
+  padding: 0 v.$gut;
+
+  .profile {
+    display: flex;
+    gap: v.$gut;
+    padding: v.$gut * 2;
+
+    &-pfp {
+      border: 6px solid var(--border-color);
+      border-radius: 50%;
+      height: 90px;
+      overflow: hidden;
+      width: 90px;
+
+      img {
+        height: 100%;
+        scale: 1.1;
+        transform-origin: 50% 50%;
+        width: 100%;
+      }
+    }
+
+    &-details {
+      padding-top: v.$gut;
+
+      .address {
+        border-radius: v.$br;
+        background-color: var(--muted-color);
+        color: var(--secondary-text);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+        padding: v.$gut v.$gut * 1.5;
+      }
+    }
+  }
+
+  .circles-cont {
+    padding: 0 v.$gut * 2;
+
+    header {
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--secondary-text);
+      display: flex;
+      font-size: 14px;
+      padding: v.$gut 0;
+
+      h5 {
+        flex-grow: 1;
+        letter-spacing: 0.016em;
+        margin: 0;
+      }
+
+      .new-circle {
+        display: flex;
+        color: var(--secondary-text);
+        gap: v.$gut * 0.5;
+
+        &-plus {
+          @include c.light-blur-bg(0.12);
+          align-items: center;
+          border-radius: 50%;
+          color: #FFFFFF3D;
+          display: flex;
+          font-size: 15px;
+          font-weight: 700;
+          height: 18px;
+          justify-content: center;
+          line-height: 1;
+          padding-bottom: 2px;
+          transition: background 180ms ease-out;
+          width: 18px;
+        }
+
+        &:hover {
+          @include c.light-blur-bg(0.18);
+        }
+      }
+    }
+
+    &-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: v.$gut * 2;
+      padding: v.$gut * 2 0;
+
+      .no-data-msg {
+        color: var(--secondary-text);
+      }
+    }
+  }
+}

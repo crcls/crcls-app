@@ -1,0 +1,21 @@
+@use '@/styles/vars' as v;
+
+:root {
+  --cw: 50%;
+}
+
+.app-layout {
+  display: grid;
+  grid-template-columns: calc(100% - var(--cw)) var(--cw);
+  grid-template-rows: 1fr;
+  height: calc(100vh - v.$th);
+  transition: grid-template-columns 125ms ease-in;
+
+  &.full-screen {
+    grid-template-columns: 100% 0%;
+  }
+
+  &-content {
+    padding-top: v.$gut;
+  }
+}

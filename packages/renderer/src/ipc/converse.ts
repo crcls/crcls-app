@@ -9,13 +9,17 @@ export function sendCommand<T extends CRCLSMessageUnion>(cmd: CRCLSMessage, data
   }
 
   return new Promise((resolve, reject) => {
-    window.CRCLS.once<T>(cmd, (_, response) => {
+    const handleResponse: CommandHandler<CRCLSMessageUnion> = (_, response) => {
       if (response.type === CRCLSMessage.ERROR) {
-        reject(response.message)
+        reject(response)
+        window.CRCLS.removeListener(cmd, handleResponse)
       } else {
-        resolve(response)
+        resolve(response as T)
+        window.CRCLS.removeListener(CRCLSMessage.ERROR, handleResponse)
       }
-    })
+    }
+    window.CRCLS.once<T>(cmd, handleResponse)
+    window.CRCLS.once<ErrorMessage>(CRCLSMessage.ERROR, handleResponse)
     window.CRCLS.sendCommand(command, subcmd, data)
   })
 }

@@ -1,4 +1,12 @@
-import { loader } from './Loader.module.scss'
-const Loader = () => <div class={loader}>Loading...</div>
+import { Component } from 'solid-js'
+import { loader, loaderFadeOut } from './Loader.module.scss'
+
+interface LoaderProps {
+  fadeOut?: boolean
+}
+
+const Loader: Component<LoaderProps> = ({ fadeOut }) => (
+  <div class={loader} classList={{ [loaderFadeOut]: fadeOut }}>Loading...</div>
+)
 
 export default Loader

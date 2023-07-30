@@ -1,5 +1,7 @@
 import { Accessor, Setter, Signal, createSignal } from "solid-js"
 
+const noopSignal = <T>(val: T) => ([() => val, (_: T) => val] as Signal<T | undefined>)
+
 export class SimpleSignal<T> {
   private getter: Accessor<T | undefined>
   private setter: Setter<T | undefined>
@@ -28,6 +30,13 @@ export class SimpleSignal<T> {
   get isUndefined(): boolean {
     return this.getter() === undefined
   }
+
+  toString(): string {
+    const value = this.getter()
+    return `${value}`
+  }
 }
+
+export const createNoopSignal = <T>(initialValue?: T): SimpleSignal<T> => new SimpleSignal<T>(noopSignal(initialValue))
 
 export const useSignal = <T>(initialValue?: T): SimpleSignal<T> => new SimpleSignal<T>(createSignal<T | undefined>(initialValue))

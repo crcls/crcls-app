@@ -1,0 +1,17 @@
+@use '@/styles/vars' as v;
+
+.breadcrumb-nav {
+  align-items: center;
+  display: flex;
+  font-size: 12px;
+  font-family: Marfa;
+  font-weight: 700;
+  gap: v.$gut * 0.25;
+}
+
+.crumb-link {
+  color: var(--primary-text);
+  font-weight: 700;
+  letter-spacing: 0.016em;
+  text-decoration: none;
+}

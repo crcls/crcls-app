@@ -33,13 +33,13 @@ export function startConverse(): Promise<void> {
     console.log(`Waiting ${timeout}ms before restarting CLI app...`)
 
     setTimeout(() => {
-      converse = spawn(process.env.CONVERSE!, ['-logfile', path.resolve('~', 'crcls', 'logs', '0000000.log')], { env: process.env })
+      converse = spawn(process.env.CONVERSE!, ['-logfile', path.resolve('~', '.crcls', 'logs', '0000000.log')], { env: process.env })
 
       converse.stdout.on('data', (data) => {
         // console.log('Converse data: ', data.toString())
         // Send data to the frontend
         const msg = JSON.parse(data)
-        console.log(msg)
+        console.log('parsed', msg)
         win?.webContents.send(msg.type, msg)
       })
 
@@ -71,5 +71,6 @@ export function stopConverse() {
 }
 
 ipcMain.on('command', (_, command) => {
+  console.log('sending cmd: ', command)
   converse.stdin.write(command + '\n')
 })
