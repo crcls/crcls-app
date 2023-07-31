@@ -1,0 +1,28 @@
+@use '@/styles/colors' as c;
+@use '@/styles/vars' as v;
+
+.wallet-section {
+  @include c.blur-bg(var(--window-color), 0.3);
+  border-radius: 16px;
+  font-family: 'Space Mono', sans-serif;
+  margin: v.$gut;
+  margin-left: v.$gut *0.5;
+  padding: v.$gut * 2;
+
+  .total-usd {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    margin: 0;
+    text-align: right;
+
+    span {
+      font-size: 45px;
+      font-weight: 300;
+    }
+
+    small {
+      font-size: 0.5em;
+    }
+  }
+}

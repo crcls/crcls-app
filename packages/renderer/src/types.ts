@@ -8,4 +8,5 @@ export enum CRCLSMessage {
   LIST_MEMBERS = 'list-members',
   LIST_CHANNELS = 'list-channels',
   LIST_PEERS = 'list-peers',
+  REPLY = 'reply',
 }

@@ -31,13 +31,21 @@
       padding-top: v.$gut;
 
       .address {
+        align-items: center;
         border-radius: v.$br;
         background-color: var(--muted-color);
         color: var(--secondary-text);
+        display: flex;
         font-size: 12px;
         font-weight: 600;
+        gap: v.$gut * 0.5;
         letter-spacing: 0.03em;
         padding: v.$gut v.$gut * 1.5;
+
+        svg {
+          height: 18px;
+          width: 18px;
+        }
       }
     }
   }

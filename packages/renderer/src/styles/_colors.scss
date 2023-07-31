@@ -1,11 +1,11 @@
 @use 'sass:map';
 
 $colors: (
-  'primary': #5551ff,
+  'primary': #6d009b,
   'secondary': #ff8577,
   'muted': #A273DE,
   'border': #bf9bdb,
-  'window': #c2e3f1,
+  'window': #8e5cf6,
   'link': color-mix(in srgb, #f23fa9 90%, #fff 10%),
   'active': #f23fa9,
   'success': #3cb371,
@@ -20,7 +20,11 @@ $text-colors: (
 );
 
 @mixin light-blur-bg($alpha: 0.2) {
-  background: rgba(255, 255, 255, $alpha);
+  @include blur-bg(white, 1 - $alpha);
+}
+
+@mixin blur-bg($color, $alpha: 0.8) {
+  background: color-mix(in srgb, $color, transparent #{percentage($alpha)});
   backdrop-filter: blur(8px);
 }
 

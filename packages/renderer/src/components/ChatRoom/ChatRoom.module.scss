@@ -2,93 +2,72 @@
 @use '@/styles/vars' as v;
 
 .chat-room {
-  @include c.light-blur-bg;
-  border-left: 1px solid var(--border-color);
-  display: grid;
-  grid-template-columns: 3px 1fr;
-  grid-template-rows: 33px 1fr;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  padding: v.$gut;
 
-  header {
-    align-items: center;
+  .message-view {
+    border-top: 1px solid var(--border-color);
     display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    flex-grow: 1;
     gap: v.$gut;
-    padding: 0 v.$gut;
-
-    .breadcrumb-nav {
-      flex-grow: 1;
-    }
-
-    .close-btn {
-      @include c.light-blur-bg(0.12);
-      border-radius: 3px;
-      color: #FFFFFF9D;
-      padding: 0 v.$gut * 0.25;
-
-      svg {
-        height: 16px;
-        width: 16px;
-      }
-    }
+    overflow-y: auto;
   }
+}
 
-  &-open-btn {
-    @include c.light-blur-bg;
+.reply-item {
+  display: flex;
+  gap: v.$gut * 3;
+
+  &-pfp {
+    border: 3px solid var(--border-color);
     border-radius: 50%;
-    cursor: pointer;
-    left: 0;
-    padding: v.$gut v.$gut * 1.2;
-    position: absolute;
-    top: v.$gut;
-    transform: translate(calc(-100% - v.$gut));
-    transition: background 125ms ease-out;
-
-    &:hover {
-      @include c.light-blur-bg(0.3);
-    }
-
-    svg {
-      fill: #FFFFFF9D;
-      height: 18px;
-      width: 18px;
-    }
+    flex: 0 0 18px;
+    height: 39px;
+    width: 39px;
   }
 
-  &-min {
-    bottom: 0;
-    position: fixed;
-    right: 0;
-    top: v.$th;
-    transition: transform 125ms ease-in;
-    width: var(--cw);
-
-    &.close {
-      transform: translateX(100%);
-    }
-  }
-
-  &-handle {
-    background-color: var(--border-color);
-    cursor: col-resize;
-    grid-row: span 2;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 125ms ease-out;
-
-    &:hover {
-      opacity: 1;
-    }
-  }
-
-  &-cont {
+  &-content {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    font-family: Telex;
+    gap: v.$gut;
+    padding-top: v.$gut * 0.5;
 
-    .messages {
+    .content-header {
+      align-items: flex-end;
       display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-      overflow-y: auto;
+      gap: v.$gut;
+
+      &-name {
+        // color: var(--inverted-text);
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 1;
+      }
+
+      &-time {
+        color: var(--primary-color);
+        font-size: 12px;
+        font-weight: 400;
+        letter-spacing: -0.045em;
+        line-height: 1;
+      }
+    }
+
+    &-msg {
+      border-radius: 21px;
+      // color: var(--inverted-text);
+      flex: 0 0 min(max-content, 210px);
+      // font-family: Inter, sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      // letter-spacing: -0.006em;
+      padding: v.$gut 0 v.$gut * 4;
     }
   }
 }

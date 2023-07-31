@@ -1,12 +1,12 @@
 declare const classNames: {
   readonly chatRoom: 'chatRoom'
-  readonly breadcrumbNav: 'breadcrumbNav'
-  readonly closeBtn: 'closeBtn'
-  readonly chatRoomOpenBtn: 'chatRoomOpenBtn'
-  readonly chatRoomMin: 'chatRoomMin'
-  readonly close: 'close'
-  readonly chatRoomHandle: 'chatRoomHandle'
-  readonly chatRoomCont: 'chatRoomCont'
-  readonly messages: 'messages'
+  readonly messageView: 'messageView'
+  readonly replyItem: 'replyItem'
+  readonly replyItemPfp: 'replyItemPfp'
+  readonly replyItemContent: 'replyItemContent'
+  readonly contentHeader: 'contentHeader'
+  readonly contentHeaderName: 'contentHeaderName'
+  readonly contentHeaderTime: 'contentHeaderTime'
+  readonly replyItemContentMsg: 'replyItemContentMsg'
 }
 export = classNames

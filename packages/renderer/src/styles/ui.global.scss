@@ -50,3 +50,8 @@ input[type=text] {
     width: 100%;
   }
 }
+
+.smooth-scroll {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}

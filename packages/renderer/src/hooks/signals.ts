@@ -1,4 +1,4 @@
-import { Accessor, Setter, Signal, createSignal } from "solid-js"
+import { Accessor, Setter, Signal, createSignal, untrack } from "solid-js"
 
 const noopSignal = <T>(val: T) => ([() => val, (_: T) => val] as Signal<T | undefined>)
 
@@ -19,6 +19,10 @@ export class SimpleSignal<T> {
     this.setter(() => newValue)
   }
 
+  get vod(): T {
+    return this.valueOrDie
+  }
+
   get valueOrDie(): T {
     const value = this.getter()
 
@@ -29,6 +33,10 @@ export class SimpleSignal<T> {
 
   get isUndefined(): boolean {
     return this.getter() === undefined
+  }
+
+  get peek(): T | undefined {
+    return untrack(this.getter)
   }
 
   toString(): string {

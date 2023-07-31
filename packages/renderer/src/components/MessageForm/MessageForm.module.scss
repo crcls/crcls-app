@@ -4,32 +4,40 @@
 .message-form {
   align-items: center;
   display: flex;
-  flex: 0 0 60px;
-  padding: v.$gut * 2;
 
   .input-wrapper {
     @include c.light-blur-bg(0.6);
+    align-items: flex-end;
     border-radius: v.$br;
-    height: calc(1em + v.$gut*4);
+    display: flex;
     flex-grow: 1;
-    padding: v.$gut * 1.5 v.$gut * 2;
-    position: relative;
+    padding: v.$gut v.$gut * 1.8 v.$gut v.$gut * 2.1;
     transition: outline 125ms cubic-bezier(0.39, 0.575, 0.565, 1);
 
     &:has(textarea:focus-visible) {
-      outline: 2px solid var(--primary-color);
+      outline: 2px solid var(--border-color);
+    }
+
+    &.multi-line {
+      border-radius: 16px;
     }
 
     .text-input {
       background-color: transparent;
       border: none;
-      font-family: Marfa;
-      height: 1.5em;
+      flex-grow: 1;
+      font-family: Telex;
+      font-size: 15px;
+      line-height: 1.2;
+      padding: v.$gut * 0.5 0;
       resize: none;
-      width: calc(100% - 43px - v.$gut);
 
       &:focus-visible {
         outline: none;
+      }
+
+      &::placeholder {
+        color: var(--muted-color);
       }
     }
 
@@ -41,13 +49,10 @@
       color: $promptColor;
       content: 'Enter';
       display: block;
+      flex: 0 0 40px;
       font-size: 12px;
       font-weight: 600;
       padding: v.$gut * 0.5;
-      position: absolute;
-      right: v.$gut * 2;
-      top: v.$gut * 1.5;
-      z-index: 10;
     }
   }
 }

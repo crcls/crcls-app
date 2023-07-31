@@ -27,3 +27,13 @@ export function sendCommand<T extends CRCLSMessageUnion>(cmd: CRCLSMessage, data
 export function waitForReady(): Promise<ReadyMessage> {
   return sendCommand<ReadyMessage>(CRCLSMessage.READY)
 }
+
+export function listenForReplies(cb: (msg: ReplyMessage) => void): () => void {
+  const handler: CommandHandler<ReplyMessage> = (_, msg) => { cb(msg) }
+
+  window.CRCLS.on<ReplyMessage>(CRCLSMessage.REPLY, handler)
+
+  return () => {
+    window.CRCLS.removeListener(CRCLSMessage.REPLY, handler)
+  }
+}

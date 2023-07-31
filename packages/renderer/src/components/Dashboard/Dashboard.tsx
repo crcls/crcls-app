@@ -4,6 +4,7 @@ import { AppContext } from "@/App"
 import ImageComp from "@/components/Image/Image"
 
 import { dashboard, profile, profileDetails, profilePfp, address, circlesCont, circlesContList, newCircle, newCirclePlus, noDataMsg } from "./Dashboard.module.scss"
+import Icon from "../Icon/Icon"
 
 const Dashboard = () => {
   const { account, circles } = useContext(AppContext)
@@ -22,6 +23,7 @@ const Dashboard = () => {
         <div class={profileDetails}>
           <h2>{account.valueOrDie.handle ?? "Anon"}</h2>
           <div class={address} title={account.valueOrDie.address}>
+            <Icon name="wallet" />
             {truncatedAddress()}
           </div>
         </div>

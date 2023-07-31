@@ -21,6 +21,12 @@ declare global {
     uri: string
   }
 
+  interface Message {
+    message: string
+    sender: string
+    timestamp: number
+  }
+
   interface CRCLSMsgBase {
     type: CRCLSMessage
   }
@@ -44,10 +50,24 @@ declare global {
     balance: number
   }
 
+  interface JoinMessage extends CRCLSMsgBase {
+    type: CRCLSMessage.JOIN
+    channel: string
+    history: Message[]
+    members: number
+  }
+
+  interface ReplyMessage extends CRCLSMsgBase {
+    type: CRCLSMessage.REPLY
+    message: Message
+  }
+
   type CRCLSMessageUnion =
     ErrorMessage |
     ReadyMessage |
-    AccountCreateMessage
+    AccountCreateMessage |
+    JoinMessage |
+    ReplyMessage
 
   type CommandHandler<T extends CRCLSMessageUnion> = (e: IpcRendererEvent, response: T) => void
 

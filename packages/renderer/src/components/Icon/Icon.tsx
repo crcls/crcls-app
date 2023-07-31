@@ -4,6 +4,7 @@ import { FaSolidCircleNotch } from 'solid-icons/fa'
 import { BsChatFill } from 'solid-icons/bs'
 import { RiArrowsArrowRightSFill } from 'solid-icons/ri'
 import { TiArrowRightThick } from 'solid-icons/ti'
+import { IoWallet } from 'solid-icons/io'
 
 import { icon, iconSpin } from './Icon.module.scss'
 import { IconTypes } from 'solid-icons'
@@ -18,7 +19,8 @@ const icons = new Map<string, IconTypes>([
   ['arrowRight', TiArrowRightThick],
   ['chat', BsChatFill],
   ['chevronRight', RiArrowsArrowRightSFill],
-  ['spinner', FaSolidCircleNotch]
+  ['spinner', FaSolidCircleNotch],
+  ['wallet', IoWallet],
 ])
 
 const Icon: Component<IconProps> = ({ name, size, spin }) => {
