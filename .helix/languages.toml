@@ -14,4 +14,4 @@ formatter = { command = "./node_modules/.bin/prettier", args = ["--parser", "typ
 
 [[language]]
 name = "scss"
-formatter = { command = "./node_modules/.bin/prettier", args = ["run", "prettier", "--parser", "scss"] }
+formatter = { command = "./node_modules/.bin/prettier", args = ["--parser", "scss"] }

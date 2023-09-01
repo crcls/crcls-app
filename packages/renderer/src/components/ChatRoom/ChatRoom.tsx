@@ -3,12 +3,12 @@ import { For, JSX, createEffect, createResource, onCleanup, useContext } from 's
 import { useSignal } from '@/hooks/signals'
 import { AppContext } from '@/App'
 import MessageForm from '@/components/MessageForm'
-
-import { chatRoom, messageView } from './ChatRoom.module.scss'
 import { listenForReplies, sendCommand } from '@/ipc/converse'
 import { CRCLSMessage } from '@/types'
-import Reply from './Reply'
 import { wait } from '@/utils/async'
+
+import { chatRoom, messageView } from './ChatRoom.module.scss'
+import Reply from './Reply'
 
 const ChatRoom = () => {
   const { path } = useContext(AppContext)
@@ -48,9 +48,19 @@ const ChatRoom = () => {
         gotoBottom()
 
         cancel.value = listenForReplies((reply) => {
-          messages.value = [...messages.valueOrDie, reply.message]
+          const msgs = messages.vod
+          const i = msgs.findLastIndex((m) => m.timestamp > reply.message.timestamp)
+
+          if (i < 0) {
+            messages.value = [...msgs, reply.message]
+          } else {
+            messages.value = [...msgs.slice(0, i), reply.message, ...(i < msgs.length - 1 ? msgs.slice(i, msgs.length - 1) : [])]
+          }
 
           if (!smoothScroll.peek) smoothScroll.value = true
+
+          // TODO: trim messages based on device vitals
+          // - detect memory and cpu usage and set the length accoding to some predefined values.
 
           if (following.peek) {
             gotoBottom()
